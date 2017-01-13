@@ -11,13 +11,11 @@ class JourneyLog
 	end
 
 	def start station
-		active_journey.start_journey station
-		@entry_station = active_journey.current_journey[:entry_station]
-		#journey_started? = true
+		current_journey.start_journey station
 	end
 
 	def finish station
-		active_journey.finish_journey station
+		current_journey.finish_journey station
 	end
 
 	def journeys
@@ -25,13 +23,11 @@ class JourneyLog
 	end
 
 	def current_journey
-	#	@active_journey
-	  if @active_journey.complete?
-			@journeys << @active_journey
-			@active_journey = journey_class.new
-		else
-			@active_journey
-		end
+		@active_journey.complete? ? create_journey : @active_journey
 	end
-
+	private
+	def create_journey
+		@journeys << @active_journey
+		@active_journey = journey_class.new
+	end
 end

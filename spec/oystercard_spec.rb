@@ -5,9 +5,12 @@ describe Oystercard do
 let(:entry_station) 		{double(:station)}
 let(:exit_station)	{double(:station)}
 let(:journey){ {entry_station: entry_station, exit_station: exit_station} }
+# let(:journey_log) {double(:journey_log),
+# 	                 new: nil,
+# 								   start: nil,
+# 								 	 finish: nil}
 
 	it { is_expected.to respond_to(:touch_in).with(1).argument }
-
 	it { is_expected.to respond_to(:journeys) }
 
 	it "journey history should be empty by default" do
